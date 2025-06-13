@@ -1,73 +1,122 @@
+/* src/app/shared/components/product-card/product-card.component.scss */
+
 .product-card {
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: white;
-  height: 100%;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden; // Garante que a imagem arredondada não "escape"
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Sombra mais proeminente
+  transition: transform 0.3s ease, box-shadow 0.3s ease; // Transição suave no hover
   display: flex;
   flex-direction: column;
+  height: 100%; // Ocupa a altura total do grid item
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); // Efeito de "levitação"
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  a { // Estilo para o link que envolve a imagem e informações
+    text-decoration: none;
+    color: inherit; // Herda a cor do pai
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; // Permite que a área do link ocupe o espaço
   }
 
   .image-container {
-    height: 200px;
-    overflow: hidden;
-
-    .product-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+    width: 100%;
+    padding-top: 75%; // Proporção 4:3 (75% da largura) para a imagem
+    position: relative;
+    background-color: #e0e0e0; // Fundo cinza para imagens não carregadas
   }
 
-  &:hover .product-image {
-    transform: scale(1.05);
+  .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Corta a imagem para preencher o container
+    border-radius: 12px 12px 0 0; // Bordas arredondadas apenas no topo
   }
 
   .product-info {
-    padding: 1rem;
-    flex-grow: 1;
+    padding: 18px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1; // Permite que o info ocupe o espaço restante
+  }
 
+  .product-name {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .product-description {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1; // Permite que a descrição empurre o preço para baixo
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // Limita a 3 linhas
+    -webkit-box-orient: vertical;
+  }
+
+  .product-price {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #27ae60; // Verde para o preço
+    margin-bottom: 15px;
+    text-align: right; // Alinha o preço à direita
+  }
+
+  .details-link {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #3498db; // Azul do botão principal
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: auto; // Empurra o link para o final do card
+    margin-bottom: 10px; // Espaçamento do botão delete
+    &:hover {
+      background-color: #2980b9;
+    }
+  }
+
+  // Estilo para o botão de deletar (se estiver no card)
+  button {
+    background-color: #e74c3c; // Vermelho
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #c0392b;
+    }
+  }
+
+  // Responsividade básica para o card em telas menores
+  @media (max-width: 480px) {
     .product-name {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.1rem;
-      color: #333;
+      font-size: 1.3em;
     }
-
-    .product-description {
-      color: #666;
-      font-size: 0.9rem;
-      flex-grow: 1;
-      margin-bottom: 1rem;
-    }
-
     .product-price {
-      font-weight: bold;
-      color: #2a5ea7;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .details-link {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: #2a5ea7;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      text-align: center;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #1d4b8c;
-      }
+      font-size: 1.2em;
     }
   }
 }

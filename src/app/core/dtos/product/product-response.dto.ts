@@ -1,5 +1,5 @@
 export interface ProductResponseDto {
-  id: string;
+  id: number;
   slug: string;
   name: string;
   description: string;

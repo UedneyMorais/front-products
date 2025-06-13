@@ -1,13 +1,12 @@
 import { ProductResponseDto } from "../dtos/product/product-response.dto";
 
 export interface Product {
-  id: string;
+  id: number;
   slug: string;
   name: string;
   description: string;
-  price: number;  // Garantimos que será number
+  price: number;
   imagePath: string;
-  // Não inclua campos que não serão usados
 }
 
 export function productFromDto(dto: ProductResponseDto): Product {
