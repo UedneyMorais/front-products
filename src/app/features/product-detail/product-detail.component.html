@@ -1,0 +1,30 @@
+@if (product$ | async; as product) {
+  <div class="product-detail-container">
+    <div class="product-gallery">
+      <img [src]="product.imagePath" [alt]="product.name" class="main-image">
+    </div>
+
+    <div class="product-info">
+      <h1 class="product-title">{{ product.name }}</h1>
+
+      <div class="price-section">
+        <span class="current-price">{{ product.price | currency:'BRL' }}</span>
+      </div>
+
+      <div class="product-description">
+        <h3>Descrição</h3>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div class="product-meta">
+        <div class="share-section">
+          <span>Compartilhar:</span>
+          <!-- Adicione botões de compartilhamento aqui -->
+        </div>
+        <div class="url-section">
+          <p>URL desta página: <code>{{ currentUrl }}</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,6 @@
+<h1>Nossos Produtos</h1>
+<div class="product-grid">
+  @for (product of products$ | async; track product.id) {
+    <app-product-card [product]="product" />
+  }
+</div>
