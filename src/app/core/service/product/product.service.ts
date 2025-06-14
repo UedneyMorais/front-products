@@ -21,7 +21,6 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<ProductResponseDto[]>(this.apiUrl).pipe(
-      // AQUI ESTÁ A MUDANÇA: dtos: ProductResponseDto[]
       map((dtos: ProductResponseDto[]) => dtos.map(dto => productFromDto(dto))),
       catchError(this.handleError)
     );
@@ -29,7 +28,6 @@ export class ProductService {
 
   getProductBySlug(slug: string): Observable<Product> {
     return this.http.get<ProductResponseDto>(`${this.apiUrl}/${slug}`).pipe(
-      // AQUI ESTÁ A MUDANÇA: dto: ProductResponseDto
       map((dto: ProductResponseDto) => productFromDto(dto)),
       catchError(this.handleError)
     );
@@ -45,7 +43,6 @@ export class ProductService {
     }
 
     return this.http.post<ProductResponseDto>(this.apiUrl, formData).pipe(
-      // AQUI ESTÁ A MUDANÇA: responseDto: ProductResponseDto
       map((responseDto: ProductResponseDto) => productFromDto(responseDto)),
       catchError(this.handleError)
     );
@@ -59,7 +56,6 @@ export class ProductService {
     if (dto.image) formData.append('image', dto.image);
 
     return this.http.patch<ProductResponseDto>(`${this.apiUrl}/${id}`, formData).pipe(
-      // AQUI ESTÁ A MUDANÇA: responseDto: ProductResponseDto
       map((responseDto: ProductResponseDto) => productFromDto(responseDto)),
       catchError(this.handleError)
     );

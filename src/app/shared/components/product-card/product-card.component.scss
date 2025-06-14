@@ -3,31 +3,33 @@
 .product-card {
   background-color: white;
   border-radius: 12px;
-  overflow: hidden; // Garante que a imagem arredondada não "escape"
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Sombra mais proeminente
-  transition: transform 0.3s ease, box-shadow 0.3s ease; // Transição suave no hover
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; // Ocupa a altura total do grid item
+  height: 100%; // Importante para que todos os cards no grid tenham a mesma altura
+  position: relative; // Garante que o conteúdo não saia facilmente
+  padding-bottom: 20px; // Adiciona um padding na parte inferior do card para o botão
 
   &:hover {
-    transform: translateY(-5px); // Efeito de "levitação"
+    transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
-  a { // Estilo para o link que envolve a imagem e informações
+  a { // Estilo para o link que envolve a imagem e informações - este 'a' é o link do card inteiro, não o 'Ver detalhes'
     text-decoration: none;
-    color: inherit; // Herda a cor do pai
+    color: inherit;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; // Permite que a área do link ocupe o espaço
+    flex-grow: 1;
   }
 
   .image-container {
     width: 100%;
-    padding-top: 75%; // Proporção 4:3 (75% da largura) para a imagem
+    padding-top: 75%; // Proporção 4:3
     position: relative;
-    background-color: #e0e0e0; // Fundo cinza para imagens não carregadas
+    background-color: #e0e0e0;
   }
 
   .product-image {
@@ -36,8 +38,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; // Corta a imagem para preencher o container
-    border-radius: 12px 12px 0 0; // Bordas arredondadas apenas no topo
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
   }
 
   .product-info {
@@ -45,6 +47,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1; // Permite que o info ocupe o espaço restante
+    justify-content: space-between; // Distribui o espaço entre os itens
   }
 
   .product-name {
@@ -60,7 +63,7 @@
     font-size: 0.95em;
     color: #666;
     margin-bottom: 15px;
-    flex-grow: 1; // Permite que a descrição empurre o preço para baixo
+    flex-grow: 1; // Permite que a descrição empurre o preço para baixo, mas com limite
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -71,32 +74,43 @@
   .product-price {
     font-size: 1.4em;
     font-weight: 700;
-    color: #27ae60; // Verde para o preço
-    margin-bottom: 15px;
-    text-align: right; // Alinha o preço à direita
+    color: #27ae60;
+    margin-bottom: 15px; // Mantenha um espaçamento
+    text-align: right;
   }
 
   .details-link {
     display: block;
-    width: 100%;
+    width: calc(100% - 36px); // Ajusta a largura para o padding do card
     padding: 10px 15px;
-    background-color: #3498db; // Azul do botão principal
+    background-color: #3498db;
     color: white;
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    margin-top: auto; // Empurra o link para o final do card
-    margin-bottom: 10px; // Espaçamento do botão delete
+    // Remova margin-top: auto e margin-bottom: 10px, vamos posicioná-lo com flexbox ou padding
+    // Adicione posicionamento relativo e ajuste com bottom/left
+    position: absolute; // Posiciona o botão de forma absoluta
+    bottom: 18px; // 18px do fundo do product-card (metade do padding-bottom + um pouco mais)
+    left: 18px; // Alinhado com o padding interno do .product-info
+    right: 18px; // Ocupa a largura restante
+    box-sizing: border-box; // Garante que padding e border sejam incluídos na largura
+
     &:hover {
       background-color: #2980b9;
     }
   }
 
   // Estilo para o botão de deletar (se estiver no card)
+  // Se o botão de deletar estiver aqui, ele precisará de um posicionamento similar,
+  // ou a estrutura HTML precisará ser revisada para abrigar dois botões na parte inferior.
+  // No seu HTML atual, o botão de delete está no onDeleteProduct do app-product-card,
+  // que é chamado do ProductListComponent.
+  // Se você tiver um botão de delete *dentro* do card, ele precisará de regras específicas.
   button {
-    background-color: #e74c3c; // Vermelho
+    background-color: #e74c3c;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -105,6 +119,7 @@
     font-weight: bold;
     width: 100%;
     transition: background-color 0.3s ease;
+    // Certifique-se de que não entre em conflito com .details-link
     &:hover {
       background-color: #c0392b;
     }

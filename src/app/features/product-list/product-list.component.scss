@@ -157,12 +157,12 @@ h1 {
   }
 
   .add-product-btn {
-    width: 100%; // Botão ocupa a largura total em telas pequenas
+    width: 100%;
     justify-content: center;
   }
 
   .product-grid {
-    grid-template-columns: 1fr; // Uma coluna em telas muito pequenas
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 }

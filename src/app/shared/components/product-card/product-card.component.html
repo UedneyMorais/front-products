@@ -6,7 +6,7 @@
     <h3 class="product-name">{{ product.name }}</h3>
     <p class="product-description">{{ product.description }}</p>
     <span class="product-price">{{ product.price | currency:'BRL' }}</span>
-    <a [routerLink]="['/produto', product.slug]" class="details-link">
+    <a [routerLink]="['/products', product.slug]" class="details-link">
       Ver detalhes
     </a>
   </div>
