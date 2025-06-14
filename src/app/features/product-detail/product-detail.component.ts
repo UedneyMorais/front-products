@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { Product, productFromDto } from '../../core/models/product.model';
 import { ProductService } from '../../core/service/product/product.service';
 import { SeoService } from '../../core/service/seo/seo.service';
+import { getFullPathImage } from '../../core/utils/url-path.utils';
 
 @Component({
   selector: 'app-product-detail',
@@ -27,16 +28,20 @@ export class ProductDetailComponent implements OnInit {
       .pipe(map(productFromDto));
   }
 
+  fullImagePath!: string;
   ngOnInit() {
     if (typeof window !== 'undefined') {
       this.currentUrl = window.location.href;
     }
 
     this.product$.subscribe(product => {
+
+      this.fullImagePath = getFullPathImage(product.imagePath);
+      console.log(this.fullImagePath);
       this.seoService.updateMetaTags({
         title: `${product.name} | Nossa Loja`,
         description: product.description,
-        image: product.imagePath
+        image: this.fullImagePath
       });
     });
   }

@@ -27,7 +27,7 @@ export class ProductService {
   }
 
   getProductBySlug(slug: string): Observable<Product> {
-    return this.http.get<ProductResponseDto>(`${this.apiUrl}/${slug}`).pipe(
+    return this.http.get<ProductResponseDto>(`${this.apiUrl}/slug/${slug}`).pipe(
       map((dto: ProductResponseDto) => productFromDto(dto)),
       catchError(this.handleError)
     );

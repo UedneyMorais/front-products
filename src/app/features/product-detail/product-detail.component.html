@@ -1,7 +1,7 @@
 @if (product$ | async; as product) {
   <div class="product-detail-container">
     <div class="product-gallery">
-      <img [src]="product.imagePath" [alt]="product.name" class="main-image">
+      <img [src]="fullImagePath" [alt]="product.name" class="main-image">
     </div>
 
     <div class="product-info">
