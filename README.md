@@ -1,4 +1,4 @@
-# FrontProducts: Sistema de Produtos (Frontend Angular com SSR)
+# Sistema de Produtos (Frontend Angular com SSR)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular Badge"/>
