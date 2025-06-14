@@ -31,47 +31,50 @@ Para iniciar o servidor de desenvolvimento:
 
 ```bash
 ng serve
+```
 
 Navegue para http://localhost:4200/. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos fonte.
 
 Code Scaffolding
 Para gerar novos componentes, diretivas, serviços, etc.:
 
-Bash
-
+```bash
 ng generate component component-name
+```
+
 Você também pode usar:
 
-Bash
-
+```bash
 ng generate directive|pipe|service|class|guard|interface|enum|module
-Build (Compilação)
-Para compilar o projeto para produção, incluindo o Server-Side Rendering:
+```
 
-Bash
+Build (Compilação)</br>
+Para compilar o projeto para produção, incluindo o Server-Side Rendering:</br>
 
+```bash
 ng build --configuration production --ssr
-Os artefatos de build serão armazenados no diretório dist/.
+```
+Os artefatos de build serão armazenados no diretório dist/.</br>
 
-Executando o Servidor SSR
-Após compilar o projeto com SSR, para iniciar o servidor Node.js que irá servir a aplicação Angular com Universal:
+Executando o Servidor SSR</br>
+Após compilar o projeto com SSR, para iniciar o servidor Node.js que irá servir a aplicação Angular com Universal:</br>
 
-Bash
-
+```bash
 npm run serve:ssr
-A aplicação estará acessível em http://localhost:4000/.
+```
+A aplicação estará acessível em http://localhost:4000/.</br>
 
-Executando Testes de Unidade
-Para executar os testes de unidade via Karma:
+Executando Testes de Unidade</br>
+Para executar os testes de unidade via Karma:</br>
 
-Bash
-
+```bash
 ng test
+```
+
 Executando Testes End-to-End (E2E)
 Para executar os testes end-to-end:
 
-Bash
-
+```bash
 ng e2e
 ```
 ---
