@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { Product } from '../../../core/models/product.model'; // Ajuste o caminho se for diferente
 import { getFullPathImage } from '../../../core/utils/url-path.utils';
+import { ProductService } from '../../../core/service/product/product.service';
 
 @Component({
   selector: 'app-product-card',
@@ -23,6 +24,8 @@ export class ProductCardComponent implements OnInit {
 
   fullImagePath!: string;
 
+  constructor(private productService: ProductService){}
+
   ngOnInit(): void {
 
     if (this.product.imagePath) {
@@ -32,5 +35,6 @@ export class ProductCardComponent implements OnInit {
 
   onDeleteClick(): void {
     this.deleteProduct.emit(+this.product.id);
+    this.productService.deleteProduct(+this.product.id);
   }
 }

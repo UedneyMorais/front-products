@@ -10,19 +10,10 @@
   flex-direction: column;
   height: 100%; // Importante para que todos os cards no grid tenham a mesma altura
   position: relative; // Garante que o conteúdo não saia facilmente
-  padding-bottom: 20px; // Adiciona um padding na parte inferior do card para o botão
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-
-  a { // Estilo para o link que envolve a imagem e informações - este 'a' é o link do card inteiro, não o 'Ver detalhes'
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
   }
 
   .image-container {
@@ -46,8 +37,7 @@
     padding: 18px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; // Permite que o info ocupe o espaço restante
-    justify-content: space-between; // Distribui o espaço entre os itens
+    flex-grow: 1;
   }
 
   .product-name {
@@ -63,11 +53,11 @@
     font-size: 0.95em;
     color: #666;
     margin-bottom: 15px;
-    flex-grow: 1; // Permite que a descrição empurre o preço para baixo, mas com limite
+    flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; // Limita a 3 linhas
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
 
@@ -75,63 +65,87 @@
     font-size: 1.4em;
     font-weight: 700;
     color: #27ae60;
-    margin-bottom: 15px; // Mantenha um espaçamento
+    margin-bottom: 15px;
     text-align: right;
   }
 
-  .details-link {
-    display: block;
-    width: calc(100% - 36px); // Ajusta a largura para o padding do card
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
+  /* ESTILOS PARA O GRUPO DE BOTÕES NA PARTE INFERIOR DO CARD */
+  .product-actions {
+    display: flex;
+    flex-direction: column; // Botões empilhados verticalmente por padrão
+    gap: 10px;
+    padding: 0 18px 18px; // Padding lateral e inferior
+    margin-top: auto; // Empurra os botões para a parte inferior do card
+  }
+
+  .action-button {
+    // Ajustado para ocupar 100% da largura disponível dentro de .product-actions
+    width: 100%;
+    padding: 12px 15px;
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-    // Remova margin-top: auto e margin-bottom: 10px, vamos posicioná-lo com flexbox ou padding
-    // Adicione posicionamento relativo e ajuste com bottom/left
-    position: absolute; // Posiciona o botão de forma absoluta
-    bottom: 18px; // 18px do fundo do product-card (metade do padding-bottom + um pouco mais)
-    left: 18px; // Alinhado com o padding interno do .product-info
-    right: 18px; // Ocupa a largura restante
-    box-sizing: border-box; // Garante que padding e border sejam incluídos na largura
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
+    box-sizing: border-box; /* Adicione box-sizing para incluir padding na largura total */
 
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  .details-link {
+    background-color: #3498db; // Azul
+    color: white;
     &:hover {
       background-color: #2980b9;
     }
   }
 
-  // Estilo para o botão de deletar (se estiver no card)
-  // Se o botão de deletar estiver aqui, ele precisará de um posicionamento similar,
-  // ou a estrutura HTML precisará ser revisada para abrigar dois botões na parte inferior.
-  // No seu HTML atual, o botão de delete está no onDeleteProduct do app-product-card,
-  // que é chamado do ProductListComponent.
-  // Se você tiver um botão de delete *dentro* do card, ele precisará de regras específicas.
-  button {
-    background-color: #e74c3c;
+  .edit-button {
+    background-color: #f39c12; // Laranja para editar
     color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    // Certifique-se de que não entre em conflito com .details-link
+    &:hover {
+      background-color: #e67e22;
+    }
+  }
+
+  .delete-button {
+    background-color: #e74c3c; // Vermelho para deletar
+    color: white;
     &:hover {
       background-color: #c0392b;
     }
   }
 
-  // Responsividade básica para o card em telas menores
+  /* Responsividade básica para o card em telas menores */
   @media (max-width: 480px) {
     .product-name {
       font-size: 1.3em;
     }
     .product-price {
       font-size: 1.2em;
+    }
+    .product-actions {
+      flex-direction: row; // Tenta alinhar em linha
+      flex-wrap: wrap; // Quebra a linha se não couber
+      justify-content: center;
+      .action-button {
+        flex: 1 1 calc(50% - 5px); /* Ajusta para duas colunas com gap de 10px */
+        max-width: calc(50% - 5px); /* Garante que não exceda */
+      }
+    }
+  }
+  @media (max-width: 380px) {
+    .product-actions {
+      flex-direction: column; // Volta a empilhar se a tela for muito pequena
+      .action-button {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
     }
   }
 }

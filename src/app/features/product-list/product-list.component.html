@@ -18,7 +18,9 @@
 
   <div *ngIf="products$ | async as products; else noProducts" class="product-grid">
     @for (product of products; track product.id) {
-      <app-product-card [product]="product" (deleteProduct)="onDeleteProduct($event)"></app-product-card>
+      <div class="product-card">
+        <app-product-card [product]="product" (deleteProduct)="onDeleteProduct($event)"></app-product-card>
+        </div>
     }
   </div>
 

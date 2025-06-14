@@ -6,8 +6,17 @@
     <h3 class="product-name">{{ product.name }}</h3>
     <p class="product-description">{{ product.description }}</p>
     <span class="product-price">{{ product.price | currency:'BRL' }}</span>
-    <a [routerLink]="['/products', product.slug]" class="details-link">
+  </div>
+
+  <div class="product-actions">
+    <a [routerLink]="['/products', product.slug]" class="action-button details-link">
       Ver detalhes
     </a>
+    <button [routerLink]="['/products/edit', product.id]" class="action-button edit-button">
+      Editar
+    </button>
+    <button (click)="onDeleteClick()" class="action-button delete-button">
+      Excluir
+    </button>
   </div>
 </div>

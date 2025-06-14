@@ -26,6 +26,13 @@ export class ProductService {
     );
   }
 
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<ProductResponseDto>(`${this.apiUrl}/${id}`).pipe(
+      map((dto: ProductResponseDto) => productFromDto(dto)),
+      catchError(this.handleError)
+    );
+  }
+
   getProductBySlug(slug: string): Observable<Product> {
     return this.http.get<ProductResponseDto>(`${this.apiUrl}/slug/${slug}`).pipe(
       map((dto: ProductResponseDto) => productFromDto(dto)),
@@ -33,36 +40,22 @@ export class ProductService {
     );
   }
 
-  createProduct(dto: CreateProductDto): Observable<Product> {
-    const formData = new FormData();
-    formData.append('name', dto.name);
-    formData.append('description', dto.description);
-    formData.append('price', dto.price.toString());
-    if (dto.image) {
-      formData.append('image', dto.image);
-    }
-
-    return this.http.post<ProductResponseDto>(this.apiUrl, formData).pipe(
+  createProduct(formData: FormData): Observable<Product> {
+    return this.http.post<ProductResponseDto>(`${this.apiUrl}/new`, formData).pipe(
       map((responseDto: ProductResponseDto) => productFromDto(responseDto)),
       catchError(this.handleError)
     );
   }
 
-  updateProduct(id: string, dto: UpdateProductDto): Observable<Product> {
-    const formData = new FormData();
-    if (dto.name) formData.append('name', dto.name);
-    if (dto.description) formData.append('description', dto.description);
-    if (dto.price) formData.append('price', dto.price.toString());
-    if (dto.image) formData.append('image', dto.image);
-
-    return this.http.patch<ProductResponseDto>(`${this.apiUrl}/${id}`, formData).pipe(
+  updateProduct(id: number, formData: FormData): Observable<Product> {
+    return this.http.patch<ProductResponseDto>(`${this.apiUrl}/edit/${id}`, formData).pipe(
       map((responseDto: ProductResponseDto) => productFromDto(responseDto)),
       catchError(this.handleError)
     );
   }
 
   deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`).pipe(
       catchError(this.handleError)
     );
   }

@@ -2,5 +2,5 @@ export interface CreateProductDto {
   name: string;
   description: string;
   price: number;
-  image?: File;
+  //image?: File;
 }
