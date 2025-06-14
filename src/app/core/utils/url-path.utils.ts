@@ -12,7 +12,7 @@ import { environment } from "../../../../environments/environment";
  */
 export function getFullPathImage(imagePath: string | null | undefined): string {
 
-  const PLACEHOLDER_IMAGE_PATH = '/assets/placeholder.png';
+  const PLACEHOLDER_IMAGE_PATH = '/assets/empty.png';
 
   if (!imagePath || imagePath.trim() === '') {
     return PLACEHOLDER_IMAGE_PATH;

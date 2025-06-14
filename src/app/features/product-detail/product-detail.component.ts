@@ -3,8 +3,8 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { Product, productFromDto } from '../../core/models/product.model';
-import { ProductService } from '../../core/service/product/product.service';
-import { SeoService } from '../../core/service/seo/seo.service';
+import { ProductService } from '../../core/services/product/product.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 import { getFullPathImage } from '../../core/utils/url-path.utils';
 
 @Component({

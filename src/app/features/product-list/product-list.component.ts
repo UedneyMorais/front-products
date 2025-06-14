@@ -7,16 +7,16 @@ import { Observable, BehaviorSubject, catchError, of, finalize, delay } from 'rx
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { Product } from '../../core/models/product.model';
-import { ProductService } from '../../core/service/product/product.service';
+import { ProductService } from '../../core/services/product/product.service';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 
 @Component({
   selector: 'app-product-list',
-  standalone: true, // Garanta que é standalone
+  standalone: true,
   imports: [
-    CommonModule,          // Para AsyncPipe, NgIf, NgFor
-    RouterLink,            // Para a diretiva routerLink
-    ProductCardComponent,  // Para reconhecer app-product-card
+    CommonModule,
+    RouterLink,
+    ProductCardComponent,
   ],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
@@ -56,7 +56,7 @@ export class ProductListComponent implements OnInit {
           // Isso garante que o usuário veja o indicador de carregamento.
         setTimeout(() => {
           this._isLoading.next(false);
-          }, 700);
+          }, 100);
         })
     );
   }

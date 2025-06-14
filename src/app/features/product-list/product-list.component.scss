@@ -165,4 +165,17 @@ h1 {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
+}
+
+.image-preview-container {
+  text-align: center;
+  .image-preview {
+    max-width: 100%; // Usar 100% para ser responsivo
+    height: auto; // Manter proporções
+    display: block; // Remover espaços extras se for inline
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    object-fit: contain; // Ou 'cover', dependendo do efeito desejado
+  }
 }

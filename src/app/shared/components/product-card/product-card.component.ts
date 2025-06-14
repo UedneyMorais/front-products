@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { Product } from '../../../core/models/product.model'; // Ajuste o caminho se for diferente
 import { getFullPathImage } from '../../../core/utils/url-path.utils';
-import { ProductService } from '../../../core/service/product/product.service';
+import { ProductService } from '../../../core/services/product/product.service';
 
 @Component({
   selector: 'app-product-card',

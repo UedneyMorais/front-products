@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ProductService } from '../../../core/service/product/product.service';
+import { ProductService } from '../../../core/services/product/product.service';
 import { Product } from '../../../core/models/product.model';
 import { Observable, switchMap, of } from 'rxjs';
 import { getFullPathImage } from '../../../core/utils/url-path.utils';
@@ -22,6 +22,7 @@ export class ProductFormComponent implements OnInit {
   productId: number | null = null;
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
+  fileName: string = '';
 
   constructor(
     private fb: FormBuilder,
