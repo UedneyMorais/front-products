@@ -25,8 +25,6 @@ As principais funcionalidades e características implementadas são:
 * **Lazy Loading:** Implementação de lazy loading nas rotas para otimizar o carregamento da aplicação, carregando módulos apenas quando são necessários.
 * **SEO Básico:** Configuração de meta tags dinâmicas para um SEO básico, melhorando a visibilidade do conteúdo nos motores de busca.
 
----
-
 ## Servidor de Desenvolvimento
 
 Para iniciar o servidor de desenvolvimento:
@@ -75,3 +73,8 @@ Para executar os testes end-to-end:
 Bash
 
 ng e2e
+```
+---
+## Observações:
+Algumas imagens para uso em assets
+---
