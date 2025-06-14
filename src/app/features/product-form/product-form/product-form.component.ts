@@ -110,7 +110,6 @@ onSubmit(): void {
     if (this.isEditMode && this.productId) {
       this.productService.updateProduct(this.productId, productData).subscribe(
         (product) => {
-          console.log('Produto atualizado:', product);
           this.router.navigate(['/products', product.slug]);
         },
         (error) => {
@@ -120,7 +119,6 @@ onSubmit(): void {
     } else {
       this.productService.createProduct(productData).subscribe(
         (product) => {
-          console.log('Produto criado:', product);
           this.router.navigate(['/products', product.slug]);
         },
         (error) => {

@@ -35,9 +35,7 @@ export class ProductDetailComponent implements OnInit {
     }
 
     this.product$.subscribe(product => {
-
       this.fullImagePath = getFullPathImage(product.imagePath);
-      console.log(this.fullImagePath);
       this.seoService.updateMetaTags({
         title: `${product.name} | Nossa Loja`,
         description: product.description,
