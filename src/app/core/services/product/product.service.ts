@@ -1,7 +1,7 @@
 // src/app/core/services/product.service.ts
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Observable, throwError, catchError, map } from 'rxjs';
 
 import { Product, productFromDto } from '../../models/product.model';
@@ -9,15 +9,28 @@ import { PaginatedResponseDto } from '../../dtos/api/paginated-response.dto';
 import { ProductResponseDto } from '../../dtos/product/product-response.dto';
 import { CreateProductDto } from '../../dtos/product/create-product.dto';
 import { UpdateProductDto } from '../../dtos/product/update-product.dto';
+import { isPlatformServer } from '@angular/common';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/products';
+  //private apiUrl = 'http://localhost:3000/products';
+  private apiUrl: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if(isPlatformServer(this.platformId)){
+      this.apiUrl = process.env['API_INTERNAL_URL'] || 'http://api_products_backend:3000/products';
+      console.log('ProductService (SSR): Usando API_INTERNAL_URL:', this.apiUrl);
+    }else {
+      this.apiUrl = 'http://localhost:3000/products';
+      console.log('ProductService (Browser): Usando localhost API URL:', this.apiUrl);
+    }
+  }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<ProductResponseDto[]>(this.apiUrl).pipe(
